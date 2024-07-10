@@ -29,11 +29,11 @@ ggplot() +
   coord_cartesian(xlim=c(0, 2000))
 
 # load metadata
-chromAnnoMeta <- read.csv("~/kidney/multiome/unannotatedRNA/chromAnno/state_annotations_processed.csv")
+chromAnnoMeta <- read.csv("/weka/mwang/dnx_projects/full_stack_ChromHMM_annotations/state_annotations_processed.csv.gz")
 rownames(chromAnnoMeta) <- chromAnnoMeta$mneumonics
 
 library(readr)
-hg38lift_genome_100_browser <- data.frame(read_table("~/kidney/multiome/unannotatedRNA/chromAnno/hg38lift_genome_100_browser.bed"))
+hg38lift_genome_100_browser <- data.frame(read_table("/weka/mwang/dnx_projects/full_stack_ChromHMM_annotations/hg38lift_genome_100_browser.bed.gz"))
 
 hg38lift_genome_100_browser$length<-unlist(hg38lift_genome_100_browser[,3]-hg38lift_genome_100_browser[,2])
 hg38lift_genome_100_browser$group<-chromAnnoMeta[as.character(hg38lift_genome_100_browser[,4]),"Group"]

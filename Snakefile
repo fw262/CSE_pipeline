@@ -78,27 +78,3 @@ rule makeDNXMat:
     shell: """
         Rscript analyzeDNX_pipeline.R {params} {output}
         """
-
-
-# re-run STAR-solo with gene and unannotated regions
-rule process_unanno_gene:
-    input: '/home/mwang/kidney/kpmpS3/processed/cellranger-arc/{sample}/outs/gex_possorted_bam.bam'
-    params: folder = '/home/mwang/kidney/multiome/unannotatedRNA/STAR_out_allPeaksMerge_100/{sample}',
-            threads = 4
-    output: '/home/mwang/kidney/multiome/unannotatedRNA/STAR_out_allPeaksMerge_100/{sample}Solo.out/Gene/filtered/matrix.mtx'
-    threads: 4
-    shell: """  rm -r {params.folder}*
-		/home/mwang/tools/STAR/bin/Linux_x86_64/STAR \
-		--genomeDir /home/mwang/kidney/multiome/unannotatedRNA/STAR_ind_allPeaksMerge_100 \
-		--soloType CB_UMI_Simple \
-		--outSAMtype None \
-		--soloUMIlen 12 \
-		--soloCBwhitelist /home/mwang/tools/cellranger-arc-2.0.2/lib/python/cellranger/barcodes/737K-arc-v1.txt \
-		--readFilesIn {input} --readFilesType SAM SE \
-		--readFilesCommand samtools view \
-		--soloInputSAMattrBarcodeSeq CR UR \
-		--soloInputSAMattrBarcodeQual CY UY \
-		--outFileNamePrefix {params.folder} \
-		--runThreadN {params.threads}
-	"""
-

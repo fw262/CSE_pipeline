@@ -34,8 +34,8 @@ for (i in 1:length(DNX_data)){
 
 # load chromatin annotations
 library(readr)
-hg38lift_genome_100_browser <- data.frame(read_table("~/kidney/multiome/unannotatedRNA/chromAnno/hg38lift_genome_100_browser.bed"))
-chromAnnoMeta <- utils::read.csv("~/kidney/multiome/unannotatedRNA/chromAnno/state_annotations_processed.csv")
+hg38lift_genome_100_browser <- data.frame(read_table("/weka/mwang/dnx_projects/full_stack_ChromHMM_annotations/hg38lift_genome_100_browser.bed.gz"))
+chromAnnoMeta <- utils::read.csv("/weka/mwang/dnx_projects/full_stack_ChromHMM_annotations/state_annotations_processed.csv.gz")
 rownames(chromAnnoMeta) <- chromAnnoMeta$mneumonics
 
 hg38lift_genome_100_browser$length<-unlist(hg38lift_genome_100_browser[,3]-hg38lift_genome_100_browser[,2])
