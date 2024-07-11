@@ -22,7 +22,7 @@ rule all:
 rule makeBedGraph_pos:
     input: 'data/{sample}.bam'
     output: temp('data_bedGraph/{sample}.plus.bedGraph')
-    shell: """ ~/tools/bedtools genomecov -ibam {input} -bg -strand + -pc > {output} """
+    shell: """ ~/tools/bedtools genomecov -ibam {input} -bg -strand + > {output} """
 
 rule makeBedGraph_neg:
     input: 'data/{sample}.bam'
