@@ -1,8 +1,12 @@
-# libraries
-library(readr);library(gdata);library(ggplot2);library(data.table);library(pals);
-library(DESeq2);library("ComplexHeatmap");library(Biostrings);library(readxl);
-library(cowplot);library(ggpmisc);library(GenomicFeatures);library(IRanges);library(dplyr)
-#library(polyester);library(ggrepel)
+# load and install required packages
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+if (!requireNamespace('readr', quietly = TRUE)) install.packages('readr'); library('readr')
+if (!requireNamespace('GenomicRanges', quietly = TRUE)) BiocManager::install('GenomicRanges'); library('GenomicRanges')
+if (!requireNamespace('dplyr', quietly = TRUE)) install.packages('dplyr'); library('dplyr')
+if (!requireNamespace('rtracklayer', quietly = TRUE)) BiocManager::install('rtracklayer'); library('dplyr')
+if (!requireNamespace('stringr', quietly = TRUE)) install.packages('stringr'); library('stringr')
+
 
 featCountFolder<-commandArgs(TRUE)[1]
 DNXMatOut<-commandArgs(TRUE)[2]

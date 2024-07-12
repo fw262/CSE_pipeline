@@ -1,7 +1,12 @@
-# libraries
-library(readr);library(gdata);library(ggplot2);library(data.table);library(pals);
-library(DESeq2);library("ComplexHeatmap");library(Biostrings);library(readxl);
-library(cowplot);library(ggpmisc);library(GenomicFeatures);library(IRanges);library(dplyr)
+# load and install required packages
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+if (!requireNamespace('readr', quietly = TRUE)) install.packages('readr'); library('readr')
+if (!requireNamespace('GenomicRanges', quietly = TRUE)) BiocManager::install('GenomicRanges'); library('GenomicRanges')
+if (!requireNamespace('dplyr', quietly = TRUE)) install.packages('dplyr'); library('dplyr')
+if (!requireNamespace('rtracklayer', quietly = TRUE)) BiocManager::install('rtracklayer'); library('dplyr')
+if (!requireNamespace('stringr', quietly = TRUE)) install.packages('stringr'); library('stringr')
+
 #library(polyester);library(ggrepel)
 
 # NA_peaks_neg <- read.table("~/dnx_projects/EXP23003664_aged_HDF/peakCountBySample_broadPeaks/AG06291_rep1_S13.markdup.sorted.neg/MACS_RNA/NA_peaks.xls", header=TRUE, quote="\"")
@@ -20,13 +25,13 @@ NA_peaks_neg <- NA_peaks_neg[NA_peaks_neg$X.log10.qvalue. > 2,]
 NA_peaks_pos <- NA_peaks_pos[NA_peaks_pos$X.log10.qvalue. > 2,]
 
 # zoom in on x axis without removing data
-ggplot() +
-  geom_histogram(data=NA_peaks_neg, aes(x=length), bins=500, fill="blue", alpha=0.5) +
-  geom_histogram(data=NA_peaks_pos, aes(x=length), bins=500, fill="red", alpha=0.5) +
-  theme_minimal() +
-  theme(legend.position="none") +
-  labs(title="Distribution of peak widths in NA peaks", x="Peak width", y="Count") +
-  coord_cartesian(xlim=c(0, 2000))
+#ggplot() +
+#  geom_histogram(data=NA_peaks_neg, aes(x=length), bins=500, fill="blue", alpha=0.5) +
+#  geom_histogram(data=NA_peaks_pos, aes(x=length), bins=500, fill="red", alpha=0.5) +
+#  theme_minimal() +
+#  theme(legend.position="none") +
+#  labs(title="Distribution of peak widths in NA peaks", x="Peak width", y="Count") +
+#  coord_cartesian(xlim=c(0, 2000))
 
 # load metadata
 chromAnnoMeta <- read.csv("/weka/mwang/dnx_projects/full_stack_ChromHMM_annotations/state_annotations_processed.csv.gz")
