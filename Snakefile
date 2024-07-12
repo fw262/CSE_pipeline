@@ -66,7 +66,7 @@ rule countPeaks:
         'peakCountBySample_broadPeaks_featureCounts/{sample}.counts.txt'
     threads: 4
     shell: """
-        featureCounts -M --fraction -T {threads} -p --countReadPairs -g gene_id -t sequence_feature -s 1 -a {input.anno} -o {output} {input.bam} # highest percentage s -1
+        featureCounts -M --fraction -T {threads} --countReadPairs -g gene_id -t sequence_feature -s 1 -a {input.anno} -o {output} {input.bam} # highest percentage s -1
         """
 
 rule makeDNXMat:
